@@ -54,7 +54,7 @@ services:
     - ./aerospike/log:/aerospike/log
     - ./aerospike/data:/aerospike/data
   exporter:
-    image: aerospike/aerospike-kafka-outbound:5.0.0
+    image: aerospike/aerospike-kafka-outbound:5.0.1
     depends_on:
     - kafka
     - zookeeper
@@ -67,12 +67,3 @@ services:
     - ./aerospike/etc/aerospike:/etc/aerospike
     - ./aerospike/etc/aerospike-kafka-outbound:/etc/aerospike-kafka-outbound
     - ./aerospike/log:/aerospike/log
-  simulator:
-    container_name: traffic_simulator
-    build:
-      context: ./traffic-simulator/
-    links:
-    - aerospikedb
-    depends_on:
-    - aerospikedb
-    - exporter
